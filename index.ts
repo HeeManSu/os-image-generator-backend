@@ -1,12 +1,18 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { generateOgImage } from "./Services/OgService";
+import { generateOgImage } from "./src/Services/OgService";
 import cors from "cors";
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 const cache = new Map<string, Buffer>();
 
@@ -39,6 +45,11 @@ app.post("/generate-og-image", async (req, res) => {
     res.status(500).send("Error generating OG image");
   }
 });
+
+app.get("/", async (req, res) => {
+  res.send("OG-Image-Generator");
+});
+
 app.listen(5000, () => {
   console.log("Server is running on port 5000");
 });
