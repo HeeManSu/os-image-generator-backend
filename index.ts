@@ -35,7 +35,7 @@ app.post("/generate-og-image", async (req, res) => {
     cache.set(cacheKey, imageBuffer);
     res.setHeader("Content-Type", "image/png");
     res.send(imageBuffer);
-  } catch (error) {
+  } catch (error : any) {
     res.status(500).send(`Error generating OG image: ${error.message}`);
   }
 });
