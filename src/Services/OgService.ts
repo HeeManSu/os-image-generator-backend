@@ -13,7 +13,9 @@ export async function generateOgImage(
     browser = await puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath('../bin'),
+      executablePath: await chromium.executablePath(
+        path.join(__dirname, "../../src/bin")
+      ),
       headless: chromium.headless,
     });
   }
