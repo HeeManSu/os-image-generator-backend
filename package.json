@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@sparticuz/chromium-min": "^126.0.0",
+    "@sparticuz/chromium": "^126.0.0",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "path": "^0.12.7",
