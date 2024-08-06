@@ -1,8 +1,8 @@
 // import puppeteer, { Browser } from "puppeteer";
 import path from "path";
 import fs from "fs/promises";
-import puppeteer, { Browser } from "puppeteer";
-import chromium from "chrome-aws-lambda";
+import puppeteer, { Browser } from "puppeteer-core";
+import chromium from "@sparticuz/chromium-min";
 
 let browser: Browser;
 export async function generateOgImage(
@@ -13,7 +13,7 @@ export async function generateOgImage(
     browser = await puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath,
+      executablePath: await chromium.executablePath(),
       headless: chromium.headless,
     });
   }
