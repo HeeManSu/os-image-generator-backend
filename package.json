@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.ts",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "postinstall": "npx puppeteer browsers install chrome"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +21,7 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
+    "chrome-aws-lambda": "^10.1.0",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "puppeteer": "^22.15.0"
