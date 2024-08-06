@@ -1,21 +1,24 @@
-import puppeteer, { Browser } from "puppeteer";
+// import puppeteer, { Browser } from "puppeteer";
 import path from "path";
 import fs from "fs/promises";
+import puppeteer, { Browser } from "puppeteer";
+import chromium from "chrome-aws-lambda";
 
 let browser: Browser;
-
 export async function generateOgImage(
   title: string,
   content: string
 ): Promise<Buffer> {
   if (!browser) {
     browser = await puppeteer.launch({
-      headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath,
+      headless: chromium.headless,
     });
   }
   const page = await browser.newPage();
-  
+
   const templatePath = path.join(__dirname, "../template.html");
   const htmlContent = fs.readFile(templatePath, "utf8");
 
